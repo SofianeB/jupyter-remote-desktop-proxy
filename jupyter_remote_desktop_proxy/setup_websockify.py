@@ -6,7 +6,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def setup_websockify():
-    vncserver = which('vncserver')
+    vncserver = '/opt/TurboVNC/bin'
     if not vncserver:
         raise RuntimeError(
             "vncserver executable not found, please install a VNC server"
@@ -33,9 +33,6 @@ def setup_websockify():
         unix_socket = False
         vnc_args = [vncserver, '-localhost', '-rfbport', '{port}']
 
-    if not os.path.exists(os.path.expanduser('~/.vnc/xstartup')):
-        vnc_args.extend(['-xstartup', os.path.join(HERE, 'share/xstartup')])
-
     vnc_command = shlex.join(
         vnc_args
         + [
@@ -55,7 +52,7 @@ def setup_websockify():
         # We want the launcher entry to point to /desktop/, not to /desktop-websockify/
         # /desktop/ is the user facing URL, while /desktop-websockify/ now *only* serves
         # websockets.
-        "launcher_entry": {"title": "Desktop", "path_info": "desktop"},
+        "launcher_entry": {"title": "VNC Desktop", "path_info": "desktop"},
         "unix_socket": unix_socket,
         "raw_socket_proxy": True,
     }
