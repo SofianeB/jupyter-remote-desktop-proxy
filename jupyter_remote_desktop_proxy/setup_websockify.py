@@ -6,7 +6,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def setup_websockify():
-    vncserver = '/opt/TurboVNC/bin'
+    vncserver = '/opt/TurboVNC/bin/vncserver'
     if not vncserver:
         raise RuntimeError(
             "vncserver executable not found, please install a VNC server"
