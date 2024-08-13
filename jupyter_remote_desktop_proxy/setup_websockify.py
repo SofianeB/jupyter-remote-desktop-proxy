@@ -6,6 +6,8 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 
 
 def setup_websockify():
+    clean_vnc_script = os.path.join(HERE, 'share/clean_vnc.sh')
+    call(clean_vnc_script)
     vncserver = '/opt/TurboVNC/bin/vncserver'
     if not vncserver:
         raise RuntimeError(
